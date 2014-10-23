@@ -5,8 +5,8 @@
   <meta charset="utf-8" />
   <title>Black Sheep Wall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/app.css" />
 </head>
 
@@ -14,7 +14,7 @@
   <section class="vbox">
     <header class="bg-white header header-md navbar navbar-fixed-top-xs">
       <a href="#" class="navbar-brand navbar-left">
-        <span class="m-l-xs">App X</span>
+        <span class="font-bold">App X</span>
       </a>
     </header>
 
@@ -44,25 +44,25 @@
                     <label class="control-label padder">Layout Algorithms</label>
                     <div class="padder">
 
-                      <div class="radio i-checks padder-lg">
+                      <div class="radio i-checks padder-sm">
                         <label>
                           <input type="radio" name="a" value="option1" checked>
                           <i></i> Orthogonal
                         </label>
                       </div>
-                      <div class="radio i-checks padder-lg">
+                      <div class="radio i-checks padder-sm">
                         <label>
                           <input type="radio" name="a" value="option2">
                           <i></i> Uniform
                         </label>
                       </div>
-                      <div class="radio i-checks padder-lg">
+                      <div class="radio i-checks padder-sm">
                         <label>
                           <input type="radio" name="a" value="option2">
                           <i></i> 180 degree
                         </label>
                       </div>
-                      <div class="radio i-checks padder-lg">
+                      <div class="radio i-checks padder-sm">
                         <label>
                           <input type="radio" name="a" value="option2">
                           <i></i> Optimal
@@ -100,29 +100,14 @@
   </section>
 
   <!-- Libraries -->
-  <!-- <script src="js/lib/jquery.min.js"></script> -->
-  <!-- <script src="js/lib/bootstrap.min.js"></script> -->
   <script src="js/lib/underscore-min.js"></script>
   <script src="js/lib/react.min.js"></script>
-  <!-- <script src="js/lib/d3.min.js"></script> -->
-  <!-- <script src="js/lib/tinycolor.min.js"></script> -->
-  <!-- <script src="js/lib/backbone-min.js"></script> -->
+  <script src="js/lib/d3.min.js"></script>
 
   <!-- Scripts -->
   <script src="js/const.js"></script>
-  <!-- <script src="js/models.js"></script> -->
-  <!-- <script src="js/util/logger.js"></script> -->
-  <!-- <script src="js/util/tutorial.js"></script> -->
-  <!-- <script src="js/views/view-header.js"></script> -->
-  <!-- <script src="js/views/view-profile.js"></script> -->
-  <!-- <script src="js/views/view-tweets.js"></script> -->
-  <!-- <script src="js/views/view-social-boundary.js"></script> -->
-  <!-- <script src="js/views/view-content-panel.js"></script> -->
-  <!-- <script src="js/views/view-preview.js"></script> -->
-  <!-- <script src="js/views/view-canvas.js"></script> -->
-  <!-- <script src="js/views/view-genome.js"></script> -->
-  <!-- <script src="js/views/view-facet.js"></script> -->
-  <!-- <script src="js/views/view-control-button.js"></script> -->
+  <script src="js/utils.js"></script>
+  <script src="js/views/view-axis.js"></script>
   <script src="js/views/view-compass.js"></script>
   <script src="js/views/view-adjacency-matrix.js"></script>
   <script src="js/main.js"></script>

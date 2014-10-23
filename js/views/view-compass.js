@@ -1,16 +1,24 @@
 App.View.Compass = React.createClass({
+  getDefaultProps: function() {
+    return {
+      axes: [
+        { "c": 1, "w": 3, "data": { 0.0: 0, 1.0: 1/6 } },
+        { "c": 3, "w": 3, "data": { 0.0: 1/4, 0.6: 1/3 } },
+        { "c": 2, "w": 3, "data": { 0.0: 0, 0.175: 5/12, 0.35: 1/2, 0.5: 7/12, 1.0: 7/12 } },
+        { "c": 2, "w": 3, "data": { 0.5: 1/2, 1.0: 1/2 } },
+        { "c": 2, "w": 3, "data": { 0.0: 0, 1.0: 2/3 } },
+        { "c": 4, "w": 3, "data": { 0.0: 0, 0.5: 11/12, 0.75: 9/12, 1.0: 9/12 } },
+      ]
+    };
+  },
   getInitialState: function() {
     return {
       width:   0,
-      height:  0,
-      numCols: 20,
-      numRows: 20,
-      data:    {}
+      height:  0
     };
   },
   componentDidMount: function() {
     this.updateDimensions();
-    this.constructMatrix();
     window.addEventListener("resize", this.updateDimensions);
   },
   componentWillUnmount: function() {
@@ -20,35 +28,38 @@ App.View.Compass = React.createClass({
     var size = document.getElementById('compass').clientWidth;
     this.setState({ width: size, height: size });
   },
-  constructMatrix: function() {
+  composeAxes: function(cx, cy, r) {
+    return _.map(this.props.axes, function(axis) {
+      return App.View.Axis({
+        cx:          cx, 
+        cy:          cy, 
+        radius:      r, 
+        color:       App.Const.COLOR_SCHEME_5[axis.c],
+        strokeWidth: axis.w,
+        data:        axis.data
+      });
+    });
+  },
+  constructCompass: function() {
     if (this.state.width === 0 || this.state.height === 0) {
       return;
     }
 
-    var elSize = this.state.width / this.state.numCols;
-
-    var _this = this;
-    var elements = _.range(this.state.numRows * this.state.numCols);
-    elements = _.map(elements, function(el, idx) {
-      return React.DOM.rect({
-        className: "matrix-element",
-        width:      elSize * 0.9,
-        height:     elSize * 0.9,
-        x:          elSize * (idx % _this.state.numCols) + elSize * 0.1,
-        y:          elSize * Math.floor(idx / _this.state.numRows) + elSize * 0.1,
-        rx:         elSize * 0.1,
-        ry:         elSize * 0.1,
-        fill:      "#55d",
-        fillOpacity: _.random(10, 100)/100
-      });
-    });
-
-    return elements;
+    var cx = this.state.width / 2;
+    var cy = this.state.height / 2;
+    
+    return React.DOM.g(null, 
+      React.DOM.circle({ cx: cx, cy: cy, r: cx*0.90, stroke: "#ddd", fillOpacity: 0 }),
+      React.DOM.circle({ cx: cx, cy: cy, r: cx*0.45, stroke: "#ddd", fillOpacity: 0 }),
+      React.DOM.line({ x1: cx, y1: cy, x2: cx* 2, y2: cy, stroke: "#ddd"}),
+      React.DOM.line({ x1: cx, y1: cy, x2: cx, y2: cy* 2, stroke: "#ddd"}),
+      React.DOM.line({ x1: cx, y1: cy, x2: cx*-2, y2: cy, stroke: "#ddd"}),
+      React.DOM.line({ x1: cx, y1: cy, x2: cx, y2: cy*-2, stroke: "#ddd"}),
+      React.DOM.g({ children: this.composeAxes(cx, cy, cx*0.9) }),
+      React.DOM.circle({ cx: cx, cy: cy, r: cx * 0.03, stroke: "#ddd", fill: "#fff" })
+    );
   },
   render: function() {
-    var matrix = this.constructMatrix();
-    return React.DOM.svg({ width: this.state.width, height: this.state.height },
-      React.DOM.g({ children: matrix })
-    );
+    return React.DOM.svg({ width: this.state.width, height: this.state.height }, this.constructCompass());
   }
 });
