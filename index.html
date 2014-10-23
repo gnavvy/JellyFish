@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Black Sheep Wall</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/app.css" />
+</head>
+
+<body class="container" style="margin-top: 32px">
+  <section class="vbox">
+    <header class="bg-white header header-md navbar navbar-fixed-top-xs">
+      <a href="#" class="navbar-brand navbar-left">
+        <span class="m-l-xs">App X</span>
+      </a>
+    </header>
+
+    <section id="content" class="hbox stretch">
+      <section class="vbox scrollable wrapper">
+        <div class="row">
+
+          <div class="col-sm-3">
+            <section class="panel panel-default">
+              <header class="panel-heading">Control Panel</header>
+              <section class="panel-body">
+                <form class="form-horizontal" method="get">
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-2">Data: </label>
+                    <div class="col-sm-10">
+                      <select name="account" class="form-control">
+                        <option>UCI - Iris</option>
+                        <option>UCI - Wine</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="line line-dashed b-b line-lg pull-in"></div>
+
+                  <div class="form-group m-b-xs">
+                    <label class="control-label padder">Layout Algorithms</label>
+                    <div class="padder">
+
+                      <div class="radio i-checks padder-lg">
+                        <label>
+                          <input type="radio" name="a" value="option1" checked>
+                          <i></i> Orthogonal
+                        </label>
+                      </div>
+                      <div class="radio i-checks padder-lg">
+                        <label>
+                          <input type="radio" name="a" value="option2">
+                          <i></i> Uniform
+                        </label>
+                      </div>
+                      <div class="radio i-checks padder-lg">
+                        <label>
+                          <input type="radio" name="a" value="option2">
+                          <i></i> 180 degree
+                        </label>
+                      </div>
+                      <div class="radio i-checks padder-lg">
+                        <label>
+                          <input type="radio" name="a" value="option2">
+                          <i></i> Optimal
+                        </label>
+                      </div>
+
+                    </div>
+                  </div> 
+                </form>
+              </section>
+            </section>
+          </div>
+
+          <div class="col-sm-5" style="padding-left: 0">
+            <section class="panel panel-default">
+              <header class="panel-heading">Main View</header>
+              <section class="panel-body">
+                <div id="compass"></div>
+              </section>
+            </section>
+          </div>
+
+          <div class="col-sm-4" style="padding-left: 0">
+            <section class="panel panel-default">
+              <header class="panel-heading">Correlation Matrix</header>
+              <section class="panel-body">
+                <div id="adjacency-matrix"></div>
+              </section>
+            </section>
+          </div>
+
+        </div>
+      </section>
+    </section>
+  </section>
+
+  <!-- Libraries -->
+  <!-- <script src="js/lib/jquery.min.js"></script> -->
+  <!-- <script src="js/lib/bootstrap.min.js"></script> -->
+  <script src="js/lib/underscore-min.js"></script>
+  <script src="js/lib/react.min.js"></script>
+  <!-- <script src="js/lib/d3.min.js"></script> -->
+  <!-- <script src="js/lib/tinycolor.min.js"></script> -->
+  <!-- <script src="js/lib/backbone-min.js"></script> -->
+
+  <!-- Scripts -->
+  <script src="js/const.js"></script>
+  <!-- <script src="js/models.js"></script> -->
+  <!-- <script src="js/util/logger.js"></script> -->
+  <!-- <script src="js/util/tutorial.js"></script> -->
+  <!-- <script src="js/views/view-header.js"></script> -->
+  <!-- <script src="js/views/view-profile.js"></script> -->
+  <!-- <script src="js/views/view-tweets.js"></script> -->
+  <!-- <script src="js/views/view-social-boundary.js"></script> -->
+  <!-- <script src="js/views/view-content-panel.js"></script> -->
+  <!-- <script src="js/views/view-preview.js"></script> -->
+  <!-- <script src="js/views/view-canvas.js"></script> -->
+  <!-- <script src="js/views/view-genome.js"></script> -->
+  <!-- <script src="js/views/view-facet.js"></script> -->
+  <!-- <script src="js/views/view-control-button.js"></script> -->
+  <script src="js/views/view-compass.js"></script>
+  <script src="js/views/view-adjacency-matrix.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
