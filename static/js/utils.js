@@ -1,5 +1,6 @@
-App.Util.PathComposer = 
+app.util.PathComposer = 
   d3.svg.line()
         .x(function(d) { return d.x; })
         .y(function(d) { return d.y; })
-        .interpolate("cardinal");
+        .interpolate("cardinal")
+        .tension(0.75);

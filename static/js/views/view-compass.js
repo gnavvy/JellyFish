@@ -1,12 +1,11 @@
-App.View.Compass = React.createClass({
+app.view.Compass = React.createClass({
   getDefaultProps: function() {
     return {
       axes: [
         { "c": 1, "w": 3, "data": { 0.0: 0, 1.0: 1/6 } },
-        { "c": 3, "w": 3, "data": { 0.0: 1/4, 0.6: 1/3 } },
-        { "c": 2, "w": 3, "data": { 0.0: 0, 0.175: 5/12, 0.35: 1/2, 0.5: 7/12, 1.0: 7/12 } },
+        { "c": 2, "w": 3, "data": { 0.0: 0, 0.166: 1/3, 0.323: 1/2, 0.5: 7/12, 1.0: 7/12 } },
         { "c": 2, "w": 3, "data": { 0.5: 1/2, 1.0: 1/2 } },
-        { "c": 2, "w": 3, "data": { 0.0: 0, 1.0: 2/3 } },
+        { "c": 3, "w": 3, "data": { 0.0: 0, 1.0: 2/3 } },
         { "c": 4, "w": 3, "data": { 0.0: 0, 0.5: 11/12, 0.75: 9/12, 1.0: 9/12 } },
       ]
     };
@@ -30,11 +29,11 @@ App.View.Compass = React.createClass({
   },
   composeAxes: function(cx, cy, r) {
     return _.map(this.props.axes, function(axis) {
-      return App.View.Axis({
+      return app.view.Axis({
         cx:          cx, 
         cy:          cy, 
         radius:      r, 
-        color:       App.Const.COLOR_SCHEME_5[axis.c],
+        color:       app.config.COLOR_SCHEME[axis.c],
         strokeWidth: axis.w,
         data:        axis.data
       });
