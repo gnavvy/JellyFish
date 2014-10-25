@@ -6,7 +6,6 @@ monkey.patch_all()
 from flask import Flask, render_template
 from flask.ext.socketio import SocketIO, emit
 
-# from flask.ext.s.ext.socketio import SocketIO
 app = Flask(__name__)
 socketio = SocketIO(app)
 
@@ -28,10 +27,7 @@ def index():
 
 @socketio.on('matrix:mouted')
 def get_matrix_data():
-    # df = pd.read_csv('data/wine.csv')
-    # data = df.corr()
-    # print(data)
-    emit('matrix:data', {'data': 'Connected', 'count': 0})
+    emit('matrix:data', {'data': []})
 
 
 @socketio.on('connect')
@@ -42,15 +38,3 @@ def test_connect():
 if __name__ == '__main__':
     app.debug = True
     socketio.run(app)
-
-
-# class DataHandler(object):
-#     def __init__(self):
-#         self.df = None
-#         pass
-
-#     def load_data(self, dataset):
-#         self.df = pd.read_csv('data/wine.csv')
-
-#     def correlation_matrix(self):
-#         print(self.df.corr())
