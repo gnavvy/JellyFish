@@ -20,6 +20,9 @@ pd.set_option('display.width', 1000)
 pd.set_option('display.max_rows', 50)
 
 
+df = pd.read_csv('data/wine.csv')
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -27,7 +30,8 @@ def index():
 
 @socketio.on('matrix:mouted')
 def get_matrix_data():
-    emit('matrix:data', {'data': []})
+    data = df.iloc[:, :-1].corr()
+    emit('matrix:data', {'data': data.to_json()})
 
 
 @socketio.on('connect')

@@ -3,9 +3,9 @@ app.view.Matrix = React.createClass({
     return {
       width:   0,
       height:  0,
-      numCols: 10,
       numRows: 10,
-      data:    {}
+      numCols: 10,
+      data:    undefined
     };
   },
   componentDidMount: function() {
@@ -18,29 +18,31 @@ app.view.Matrix = React.createClass({
   componentWillUnmount: function() {
     window.removeEventListener("resize", this.updateDimensions);
   },
-  updateMatrixData: function(data) {
-    console.log('data', data);
+  updateMatrixData: function(res) {
+    var data = JSON.parse(res.data);
+    var numRows = _.size(data);
+    var numCols = _.size(_.values(data)[0]);
+    data = _.flatten(_.map(data, _.values));
+    this.setState({ numRows: numRows, numCols: numCols, data: data });
   },
   updateDimensions: function() {
     var size = document.getElementById('matrix').clientWidth;
     this.setState({ width: size, height: size });
   },
   getFillColor: function(idx) {
-    var x = idx % this.state.numCols;
-    var y = Math.floor(idx / this.state.numRows);
-    if (x === y) {
-      return app.config.COLOR_SCHEME[0];
-    } else if (x > y) {
-      return app.config.COLOR_SCHEME[1];
-    } else {
+    if (this.state.data === undefined || this.state.data[idx] === 0) {
+      return app.config.COLOR_SCHEME[0]; 
+    } else if (this.state.data[idx] > 0) {
       return app.config.COLOR_SCHEME[2];
+    } else {
+      return app.config.COLOR_SCHEME[1];
     }
   },
   getFillOpacity: function(idx) {
-    if (idx % this.state.numCols === Math.floor(idx / this.state.numRows)) {
-      return 0.5;
+    if (this.state.data === undefined) {
+      return 0.3;
     }
-    return _.random(10, 90)/100;
+    return Math.abs(this.state.data[idx]);
   },
   constructMatrix: function() {
     if (this.state.width === 0 || this.state.height === 0) {
