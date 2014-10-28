@@ -5,7 +5,6 @@ app.view.ControlPanel = React.createClass({
         React.DOM.label({className: "control-label col-sm-2"}, "Data: "), 
         React.DOM.div({className: "col-sm-10"}, 
           React.DOM.select({name: "account", className: "form-control"}, 
-            React.DOM.option(null, "UCI - Iris"), 
             React.DOM.option(null, "UCI - Wine")
           )
         )
@@ -17,13 +16,13 @@ app.view.ControlPanel = React.createClass({
           React.DOM.div({className: "radio i-checks padder-sm"}, 
             React.DOM.label(null, 
               React.DOM.input({type: "radio", name: "a", value: "option1", checked: true}), 
-              React.DOM.i(null), " Orthogonal"
+              React.DOM.i(null), " Uniform"
             )
           ), 
           React.DOM.div({className: "radio i-checks padder-sm"}, 
             React.DOM.label(null, 
               React.DOM.input({type: "radio", name: "a", value: "option2"}), 
-              React.DOM.i(null), " Uniform"
+              React.DOM.i(null), " Orthogonal"
             )
           ), 
           React.DOM.div({className: "radio i-checks padder-sm"}, 

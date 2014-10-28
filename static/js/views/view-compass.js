@@ -12,13 +12,17 @@ app.view.Compass = React.createClass({
   },
   getInitialState: function() {
     return {
-      width:   0,
-      height:  0
+      axes:   undefined,
+      points: undefined,
+      width:  0,
+      height: 0
     };
   },
   componentDidMount: function() {
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions);
+    app.socket.emit('compass:mouted');
+    app.socket.on('compass:data', this.updateCompass);
   },
   componentWillUnmount: function() {
     window.removeEventListener("resize", this.updateDimensions);
@@ -27,8 +31,31 @@ app.view.Compass = React.createClass({
     var size = document.getElementById('compass').clientWidth;
     this.setState({ width: size, height: size });
   },
+  updateCompass: function(res) {
+    var axes = _.map(JSON.parse(res.axes), function(axis) {
+      return { 'c': 1, 'w': 3, 'data': axis };
+    });
+
+    var points = _.map(JSON.parse(res.data), function(p) {
+      return { 'c': 3, 'w': 2, 'data': p };
+    });
+
+    this.setState({ axes: axes, points: points });
+  },
   composeAxes: function(cx, cy, r) {
-    return _.map(this.props.axes, function(axis) {
+    return _.map(this.state.axes, function(axis) {
+      return app.view.Axis({
+        cx:          cx, 
+        cy:          cy, 
+        radius:      r, 
+        color:       app.config.COLOR_SCHEME[axis.c],
+        strokeWidth: axis.w,
+        data:        axis.data
+      });
+    });
+  },
+  plotPoints: function(cx, cy, r) {
+    return _.map(this.state.points, function(axis) {
       return app.view.Axis({
         cx:          cx, 
         cy:          cy, 
@@ -55,6 +82,7 @@ app.view.Compass = React.createClass({
       React.DOM.line({ x1: cx, y1: cy, x2: cx*-2, y2: cy, stroke: "#ddd"}),
       React.DOM.line({ x1: cx, y1: cy, x2: cx, y2: cy*-2, stroke: "#ddd"}),
       React.DOM.g({ children: this.composeAxes(cx, cy, cx*0.9) }),
+      React.DOM.g({ children: this.plotPoints(cx, cy, cx*0.9) }),
       React.DOM.circle({ cx: cx, cy: cy, r: cx * 0.03, stroke: "#ddd", fill: "#fff" })
     );
   },
