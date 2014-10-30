@@ -1,23 +1,43 @@
 App.View.Vertex = React.createClass({
+  displayName: 'Vertex',
+  mixins: [App.Mixin.SvgCircleMinxin],
+  render: function() {
+    return App.create('circle', {
+      cx:          this.props.x || 0,
+      cy:          this.props.y || 0,
+      r:           this.props.radius || 2,
+      fill:        this.props.color || App.Const.COLOR_SCHEME[1],
+      stroke:      this.props.color || App.Const.COLOR_SCHEME[1],
+      fillOpacity: this.props.fillOpacity || 1,
+      strokeWidth: this.props.strokeWidth || 1
+    });
+  }
+});
+
+App.View.Knob = React.createClass({
+  displayName: 'Knob',
+  mixins: [App.Mixin.SvgCircleMinxin],
   getDefaultProps: function() {
     return {
-      x: 0,
-      y: 0,
-      radius:  2,
-      color: App.Config.COLOR_SCHEME[1],
-      strokeWidth: 1,
-      fillOpacity: 1
-    };
+      componentId:'default-knob',
+      onMouseDown: function() {}
+    }
   },
   render: function() {
-    return React.createElement('circle', {
-      cx:          this.props.x,
-      cy:          this.props.y,
-      r:           this.props.radius,
-      stroke:      this.props.color,
-      strokeWidth: this.props.strokeWidth,
-      fill:        this.props.color,
-      fillOpacity: this.props.fillOpacity
-    });
+    return App.create('g', null,
+      App.create('circle', {  // shadow
+        cx:          this.props.x + 1 || 1,
+        cy:          this.props.y + 1 || 1,
+        r:           App.Const.RANGE_SELECTOR_KNOB_RADIUS,
+        fill:       '#ddd'
+      }),
+      App.create('circle', {
+        cx:          this.props.x || 0,
+        cy:          this.props.y || 0,
+        r:           App.Const.RANGE_SELECTOR_KNOB_RADIUS,
+        fill:        App.Const.COLOR_SCHEME[1],
+        onMouseDown: this.props.onMouseDown
+      })
+    );
   }
 });

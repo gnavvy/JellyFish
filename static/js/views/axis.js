@@ -1,4 +1,5 @@
 App.View.Axis = React.createClass({
+  displayName: 'Axis',
   getDefaultProps: function() {
     return {
       cx: 0,
@@ -13,7 +14,6 @@ App.View.Axis = React.createClass({
     return {
       width:      0,
       height:     0,
-      knobSize:   App.Config.AXIS_KNOB_SIZE,
       points:     [],
       isDragging: false
     };
@@ -44,11 +44,11 @@ App.View.Axis = React.createClass({
   },
   onMouseOverKnob: function(e) {
     e.preventDefault();
-    this.setState({ knobSize: App.Config.AXIS_KNOB_SIZE*1.5 });
+    this.setState({ knobSize: App.Const.AXIS_KNOB_SIZE*1.5 });
   },
   onMouseLeaveKnob: function(e) {
     e.preventDefault();
-    this.setState({ knobSize: App.Config.AXIS_KNOB_SIZE });
+    this.setState({ knobSize: App.Const.AXIS_KNOB_SIZE });
   },
   onMouseDownKnob: function(e) {
     e.preventDefault();
@@ -60,12 +60,12 @@ App.View.Axis = React.createClass({
   composeKnobs: function() {
     var _this = this;
     return _.map(this.state.points, function(p) {
-      return React.createElement('circle', {
+      return App.create('circle', {
         cx:            p.x, 
         cy:            p.y, 
-        r:            _this.state.knobSize, 
+        r:             App.Const.AXIS_KNOB_SIZE,
         stroke:       _this.props.color,
-        strokeWidth:   App.Config.AXIS_KNOB_STROKE_WIDTH,
+        strokeWidth:   App.Const.AXIS_KNOB_STROKE_WIDTH,
         fill:         "#fff",
         onMouseDown:  _this.onMouseDownKnob,
         onMouseOver:  _this.onMouseOverKnob,
@@ -74,7 +74,7 @@ App.View.Axis = React.createClass({
     });
   },
   composePath: function() {
-    return React.createElement('path', { 
+    return App.create('path', {
       d:           App.Util.PathComposer(this.state.points),
       stroke:      this.props.color, 
       strokeWidth: this.props.strokeWidth, 
@@ -82,11 +82,8 @@ App.View.Axis = React.createClass({
     });
   },
   render: function() {
-    return React.createElement('g', null,
-      this.composePath(),
-      React.createElement('g', {
-        children: this.composeKnobs()
-      })
+    return App.create('g', null,
+      this.composePath(), App.create('g', { children: this.composeKnobs() })
     );
   }
 });

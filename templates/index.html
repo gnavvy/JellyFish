@@ -30,51 +30,58 @@
               <section class="panel-body">
                 <div id="control-panel"></div>
               </section>
+              <footer class="panel-footer"></footer>
             </section>
           </div>
 
-          <div class="col-sm-3" style="padding-left: 0">
-            <section class="panel panel-default">
+          <div class="col-sm-3 portlet ui-sortable" style="padding-left: 0">
+            <section class="panel panel-info portlet-item">
               <header class="panel-heading">Star Coordinate</header>
-                <section class="panel-body">
-                  <div id="compass"></div>
-                </section>
+              <section class="panel-body">
+                <div id="compass"></div>
+              </section>
+              <footer class="panel-footer"></footer>
             </section>
-            <section class="panel panel-default">
+            <section class="panel panel-info portlet-item">
               <header class="panel-heading">Correlation Matrix</header>
               <section class="panel-body">
                 <div id="matrix"></div>
               </section>
+              <footer class="panel-footer"></footer>
             </section>
           </div>
 
-          <div class="col-sm-3" style="padding-left: 0">
-            <section class="panel panel-default">
+          <div class="col-sm-3 portlet ui-sortable" style="padding-left: 0">
+            <section class="panel panel-info portlet-item">
               <header class="panel-heading">-</header>
-                <section class="panel-body">
-                  <div id="view-3"></div>
-                </section>
+              <section class="panel-body">
+                <div id="view-3"></div>
+              </section>
+              <footer class="panel-footer"></footer>
             </section>
-            <section class="panel panel-default">
+            <section class="panel panel-info portlet-item">
               <header class="panel-heading">-</header>
-                <section class="panel-body">
-                  <div id="view-4"></div>
-                </section>
+              <section class="panel-body">
+                <div id="view-4"></div>
+              </section>
+              <footer class="panel-footer"></footer>
             </section>
           </div>
 
-          <div class="col-sm-3" style="padding-left: 0">
-            <section class="panel panel-default">
+          <div class="col-sm-3 portlet ui-sortable" style="padding-left: 0">
+            <section class="panel panel-info portlet-item">
               <header class="panel-heading">-</header>
-                <section class="panel-body">
-                  <div id="view-5"></div>
-                </section>
+              <section class="panel-body">
+                <div id="view-5"></div>
+              </section>
+              <footer class="panel-footer"></footer>
             </section>
-            <section class="panel panel-default">
+            <section class="panel panel-info portlet-item">
               <header class="panel-heading">-</header>
-                <section class="panel-body">
-                  <div id="view-6"></div>
-                </section>
+              <section class="panel-body">
+                <div id="view-6"></div>
+              </section>
+              <footer class="panel-footer"></footer>
             </section>
           </div>
 
@@ -84,14 +91,17 @@
   </section>
 
   <!-- Libraries -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>      
 
   <!-- Scripts -->
-  <script src="{{url_for('static', filename='js/config.js')}}"></script>
-  <script src="{{url_for('static', filename='js/utils.js')}}"></script>
+  <script src="{{url_for('static', filename='js/const.js')}}"></script>
+  <script src="{{url_for('static', filename='js/util.js')}}"></script>
+  <script src="{{url_for('static', filename='js/views/range-selector.js')}}"></script>
   <script src="{{url_for('static', filename='js/views/control-panel.js')}}"></script>
   <script src="{{url_for('static', filename='js/views/scatter-plot.js')}}"></script>
   <script src="{{url_for('static', filename='js/views/axis.js')}}"></script>

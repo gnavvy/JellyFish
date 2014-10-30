@@ -33,11 +33,11 @@ App.View.Compass = React.createClass({
   },
   composeAxes: function(cx, cy, r) {
     return _.map(this.state.axes, function(axis) {
-      return React.createElement(App.View.Axis, {
+      return App.create(App.View.Axis, {
         cx:          cx, 
         cy:          cy, 
         radius:      r, 
-        color:       App.Config.COLOR_SCHEME[axis.c],
+        color:       App.Const.COLOR_SCHEME[axis.c],
         strokeWidth: axis.w,
         data:        axis.data
       });
@@ -45,11 +45,11 @@ App.View.Compass = React.createClass({
   },
   plotPoints: function(cx, cy, r) {
     return _.map(this.state.points, function(axis) {
-      return React.createElement(App.View.Axis, {
+      return App.create(App.View.Axis, {
         cx:          cx, 
         cy:          cy, 
         radius:      r, 
-        color:       App.Config.COLOR_SCHEME[axis.c],
+        color:       App.Const.COLOR_SCHEME[axis.c],
         strokeWidth: axis.w,
         data:        axis.data
       });
@@ -63,20 +63,20 @@ App.View.Compass = React.createClass({
     var cx = this.state.width / 2;
     var cy = this.state.height / 2;
     
-    return React.createElement('g', null,
-      React.createElement('circle', { cx: cx, cy: cy, r: cx*0.90, stroke: "#eee", fillOpacity: 0 }),
-      React.createElement('circle', { cx: cx, cy: cy, r: cx*0.45, stroke: "#eee", fillOpacity: 0 }),
-      React.createElement('line', { x1: cx, y1: cy, x2: cx* 2, y2: cy, stroke: "#eee"}),
-      React.createElement('line', { x1: cx, y1: cy, x2: cx, y2: cy* 2, stroke: "#eee"}),
-      React.createElement('line', { x1: cx, y1: cy, x2: cx*-2, y2: cy, stroke: "#eee"}),
-      React.createElement('line', { x1: cx, y1: cy, x2: cx, y2: cy*-2, stroke: "#eee"}),
-      React.createElement('g', { children: this.composeAxes(cx, cy, cx*0.9) }),
-      React.createElement('g', { children: this.plotPoints(cx, cy, cx*0.9) }),
-      React.createElement('circle', { cx: cx, cy: cy, r: cx * 0.03, stroke: "#eee", fill: "#fff" })
+    return App.create('g', null,
+      App.create('circle', { cx: cx, cy: cy, r: cx*0.90, stroke: "#eee", fillOpacity: 0 }),
+      App.create('circle', { cx: cx, cy: cy, r: cx*0.45, stroke: "#eee", fillOpacity: 0 }),
+      App.create('line', { x1: cx, y1: cy, x2: cx* 2, y2: cy, stroke: "#eee"}),
+      App.create('line', { x1: cx, y1: cy, x2: cx, y2: cy* 2, stroke: "#eee"}),
+      App.create('line', { x1: cx, y1: cy, x2: cx*-2, y2: cy, stroke: "#eee"}),
+      App.create('line', { x1: cx, y1: cy, x2: cx, y2: cy*-2, stroke: "#eee"}),
+      App.create('g', { children: this.composeAxes(cx, cy, cx*0.9) }),
+      App.create('g', { children: this.plotPoints(cx, cy, cx*0.9) }),
+      App.create('circle', { cx: cx, cy: cy, r: cx * 0.03, stroke: "#eee", fill: "#fff" })
     );
   },
   render: function() {
-    return React.createElement('svg', { 
+    return App.create('svg', {
       width: this.state.width, 
       height: this.state.height 
     }, this.constructCompass());

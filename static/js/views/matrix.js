@@ -1,4 +1,13 @@
 App.View.Matrix = React.createClass({
+  displayName: 'Matrix',
+  propTypes: {
+    containerId: React.PropTypes.string
+  },
+  getDefaultProps: function() {
+    return {
+      containerId: 'default-container'
+    };
+  },
   getInitialState: function() {
     return {
       width:   0,
@@ -12,7 +21,7 @@ App.View.Matrix = React.createClass({
     this.updateDimensions();
     this.constructMatrix();
     window.addEventListener("resize", this.updateDimensions);
-    App.socket.emit('matrix:mouted');
+    App.socket.emit('matrix:mounted');
     App.socket.on('matrix:data', this.updateMatrixData);
   },
   componentWillUnmount: function() {
@@ -26,16 +35,16 @@ App.View.Matrix = React.createClass({
     this.setState({ numRows: numRows, numCols: numCols, data: data });
   },
   updateDimensions: function() {
-    var size = document.getElementById('matrix').clientWidth;
+    var size = document.getElementById(this.props.containerId).clientWidth;
     this.setState({ width: size, height: size });
   },
   getFillColor: function(idx) {
     if (this.state.data === undefined || this.state.data[idx] === 0) {
-      return App.Config.COLOR_SCHEME[0];
+      return App.Const.COLOR_SCHEME[0];
     } else if (this.state.data[idx] > 0) {
-      return App.Config.COLOR_SCHEME[2];
+      return App.Const.COLOR_SCHEME[2];
     } else {
-      return App.Config.COLOR_SCHEME[1];
+      return App.Const.COLOR_SCHEME[1];
     }
   },
   getFillOpacity: function(idx) {
@@ -45,7 +54,7 @@ App.View.Matrix = React.createClass({
     return Math.abs(this.state.data[idx]);
   },
   constructMatrix: function() {
-    if (this.state.width === 0 || this.state.height === 0) {
+    if (this.state.width === 0) {
       return;
     }
 
@@ -54,7 +63,7 @@ App.View.Matrix = React.createClass({
     var _this = this;
     var elements = _.range(this.state.numRows * this.state.numCols);
     elements = _.map(elements, function(el, idx) {
-      return React.createElement('rect', {
+      return App.create('rect', {
         className:   "matrix-element",
         width:        elSize * 0.9,
         height:       elSize * 0.9,
@@ -70,11 +79,11 @@ App.View.Matrix = React.createClass({
     return elements;
   },
   render: function() {
-    return React.createElement('svg', { 
-      width: this.state.width, 
-      height: this.state.height 
-    }, React.createElement('g', { 
-      children: this.constructMatrix() 
+    return App.create('svg', {
+      width: this.state.width,
+      height: this.state.height
+    }, App.create('g', {
+      children: this.constructMatrix()
     }));
   }
 });

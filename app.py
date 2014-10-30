@@ -38,11 +38,12 @@ def test_connect():
 
 @socketio.on('scatter-plot:mounted')
 def get_scatter_plot_data(req):
-    key = req['id']
-    emit(key+':data', {
-        'x': df[key+'.x'].to_json(orient='values'),
-        'y': df[key+'.y'].to_json(orient='values'),
-        'val': df[key+'.jaccard'].to_json(orient='values'),
+    method = req['method']
+    print(method)
+    emit(method+':data', {
+        'x': df[method+'.x'].to_json(orient='values'),
+        'y': df[method+'.y'].to_json(orient='values'),
+        'val': df[method+'.jaccard'].to_json(orient='values'),
         'cls': df['Class'].to_json(orient='values')
     })
 
@@ -59,7 +60,7 @@ def get_compass_data():
     })
 
 
-@socketio.on('matrix:mouted')
+@socketio.on('matrix:mounted')
 def get_matrix_data():
     data = df.iloc[:, :-1].corr()
     emit('matrix:data', {'data': data.to_json()})

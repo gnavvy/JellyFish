@@ -11,7 +11,7 @@ pd.set_option('display.width', 1000)
 pd.set_option('display.max_rows', 50)
 
 from sklearn.neighbors import NearestNeighbors
-from sklearn.manifold import TSNE, MDS
+from sklearn.manifold import TSNE, MDS, SpectralEmbedding, Isomap
 from sklearn.metrics import jaccard_similarity_score
 
 
@@ -28,7 +28,9 @@ if __name__ == '__main__':
 
     projectors = {
         'TSNE': TSNE(),
-        'MDS': MDS()
+        'MDS': MDS(),
+        'Spectral': SpectralEmbedding(),
+        'Isomap': Isomap()
     }
 
     for method in projectors.keys():
