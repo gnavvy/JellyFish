@@ -1,15 +1,4 @@
-app.view.Compass = React.createClass({
-  getDefaultProps: function() {
-    return {
-      axes: [
-        { "c": 1, "w": 3, "data": { 0.0: 0, 1.0: 1/6 } },
-        { "c": 2, "w": 3, "data": { 0.0: 0, 0.166: 1/3, 0.323: 1/2, 0.5: 7/12, 1.0: 7/12 } },
-        { "c": 2, "w": 3, "data": { 0.5: 1/2, 1.0: 1/2 } },
-        { "c": 3, "w": 3, "data": { 0.0: 0, 1.0: 2/3 } },
-        { "c": 4, "w": 3, "data": { 0.0: 0, 0.5: 11/12, 0.75: 9/12, 1.0: 9/12 } },
-      ]
-    };
-  },
+App.View.Compass = React.createClass({
   getInitialState: function() {
     return {
       axes:   undefined,
@@ -21,8 +10,8 @@ app.view.Compass = React.createClass({
   componentDidMount: function() {
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions);
-    app.socket.emit('compass:mouted');
-    app.socket.on('compass:data', this.updateCompass);
+    App.socket.emit('compass:mounted');
+    App.socket.on('compass:data', this.updateCompass);
   },
   componentWillUnmount: function() {
     window.removeEventListener("resize", this.updateDimensions);
@@ -44,11 +33,11 @@ app.view.Compass = React.createClass({
   },
   composeAxes: function(cx, cy, r) {
     return _.map(this.state.axes, function(axis) {
-      return app.view.Axis({
+      return React.createElement(App.View.Axis, {
         cx:          cx, 
         cy:          cy, 
         radius:      r, 
-        color:       app.config.COLOR_SCHEME[axis.c],
+        color:       App.Config.COLOR_SCHEME[axis.c],
         strokeWidth: axis.w,
         data:        axis.data
       });
@@ -56,11 +45,11 @@ app.view.Compass = React.createClass({
   },
   plotPoints: function(cx, cy, r) {
     return _.map(this.state.points, function(axis) {
-      return app.view.Axis({
+      return React.createElement(App.View.Axis, {
         cx:          cx, 
         cy:          cy, 
         radius:      r, 
-        color:       app.config.COLOR_SCHEME[axis.c],
+        color:       App.Config.COLOR_SCHEME[axis.c],
         strokeWidth: axis.w,
         data:        axis.data
       });
@@ -74,19 +63,22 @@ app.view.Compass = React.createClass({
     var cx = this.state.width / 2;
     var cy = this.state.height / 2;
     
-    return React.DOM.g(null, 
-      React.DOM.circle({ cx: cx, cy: cy, r: cx*0.90, stroke: "#ddd", fillOpacity: 0 }),
-      React.DOM.circle({ cx: cx, cy: cy, r: cx*0.45, stroke: "#ddd", fillOpacity: 0 }),
-      React.DOM.line({ x1: cx, y1: cy, x2: cx* 2, y2: cy, stroke: "#ddd"}),
-      React.DOM.line({ x1: cx, y1: cy, x2: cx, y2: cy* 2, stroke: "#ddd"}),
-      React.DOM.line({ x1: cx, y1: cy, x2: cx*-2, y2: cy, stroke: "#ddd"}),
-      React.DOM.line({ x1: cx, y1: cy, x2: cx, y2: cy*-2, stroke: "#ddd"}),
-      React.DOM.g({ children: this.composeAxes(cx, cy, cx*0.9) }),
-      React.DOM.g({ children: this.plotPoints(cx, cy, cx*0.9) }),
-      React.DOM.circle({ cx: cx, cy: cy, r: cx * 0.03, stroke: "#ddd", fill: "#fff" })
+    return React.createElement('g', null,
+      React.createElement('circle', { cx: cx, cy: cy, r: cx*0.90, stroke: "#eee", fillOpacity: 0 }),
+      React.createElement('circle', { cx: cx, cy: cy, r: cx*0.45, stroke: "#eee", fillOpacity: 0 }),
+      React.createElement('line', { x1: cx, y1: cy, x2: cx* 2, y2: cy, stroke: "#eee"}),
+      React.createElement('line', { x1: cx, y1: cy, x2: cx, y2: cy* 2, stroke: "#eee"}),
+      React.createElement('line', { x1: cx, y1: cy, x2: cx*-2, y2: cy, stroke: "#eee"}),
+      React.createElement('line', { x1: cx, y1: cy, x2: cx, y2: cy*-2, stroke: "#eee"}),
+      React.createElement('g', { children: this.composeAxes(cx, cy, cx*0.9) }),
+      React.createElement('g', { children: this.plotPoints(cx, cy, cx*0.9) }),
+      React.createElement('circle', { cx: cx, cy: cy, r: cx * 0.03, stroke: "#eee", fill: "#fff" })
     );
   },
   render: function() {
-    return React.DOM.svg({ width: this.state.width, height: this.state.height }, this.constructCompass());
+    return React.createElement('svg', { 
+      width: this.state.width, 
+      height: this.state.height 
+    }, this.constructCompass());
   }
 });

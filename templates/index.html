@@ -9,42 +9,72 @@
   <link rel="stylesheet" href="{{url_for('static', filename='css/app.css')}}"/>
 </head>
 
-<body class="container" style="margin-top: 32px">
+<body>
   <section class="vbox">
     <header class="bg-white header header-md navbar navbar-fixed-top-xs">
       <a href="#" class="navbar-brand navbar-left">
         <span class="font-bold">Jellyfish</span>
       </a>
+      <a href="#" class="navbar-brand navbar-right">
+        <span class="font-bold">Visualization & Interface Design Innovation</span>
+      </a>
     </header>
 
     <section id="content" class="hbox stretch">
       <section class="vbox scrollable wrapper">
-        <div class="row">
+        <div class="row m-b-n">
 
           <div class="col-sm-3">
             <section class="panel panel-default">
               <header class="panel-heading">Control Panel</header>
               <section class="panel-body">
-                <div id="control-panel">
+                <div id="control-panel"></div>
               </section>
             </section>
           </div>
 
-          <div class="col-sm-5" style="padding-left: 0">
+          <div class="col-sm-3" style="padding-left: 0">
             <section class="panel panel-default">
-              <header class="panel-heading">Main View</header>
-              <section class="panel-body">
-                <div id="compass"></div>
-              </section>
+              <header class="panel-heading">Star Coordinate</header>
+                <section class="panel-body">
+                  <div id="compass"></div>
+                </section>
             </section>
-          </div>
-
-          <div class="col-sm-4" style="padding-left: 0">
             <section class="panel panel-default">
               <header class="panel-heading">Correlation Matrix</header>
               <section class="panel-body">
                 <div id="matrix"></div>
               </section>
+            </section>
+          </div>
+
+          <div class="col-sm-3" style="padding-left: 0">
+            <section class="panel panel-default">
+              <header class="panel-heading">-</header>
+                <section class="panel-body">
+                  <div id="view-3"></div>
+                </section>
+            </section>
+            <section class="panel panel-default">
+              <header class="panel-heading">-</header>
+                <section class="panel-body">
+                  <div id="view-4"></div>
+                </section>
+            </section>
+          </div>
+
+          <div class="col-sm-3" style="padding-left: 0">
+            <section class="panel panel-default">
+              <header class="panel-heading">-</header>
+                <section class="panel-body">
+                  <div id="view-5"></div>
+                </section>
+            </section>
+            <section class="panel panel-default">
+              <header class="panel-heading">-</header>
+                <section class="panel-body">
+                  <div id="view-6"></div>
+                </section>
             </section>
           </div>
 
@@ -55,17 +85,19 @@
 
   <!-- Libraries -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.11.2/react.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>      
 
   <!-- Scripts -->
   <script src="{{url_for('static', filename='js/config.js')}}"></script>
   <script src="{{url_for('static', filename='js/utils.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/view-control-panel.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/view-axis.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/view-compass.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/view-matrix.js')}}"></script>    
+  <script src="{{url_for('static', filename='js/views/control-panel.js')}}"></script>
+  <script src="{{url_for('static', filename='js/views/scatter-plot.js')}}"></script>
+  <script src="{{url_for('static', filename='js/views/axis.js')}}"></script>
+  <script src="{{url_for('static', filename='js/views/primitives.js')}}"></script>
+  <script src="{{url_for('static', filename='js/views/compass.js')}}"></script>
+  <script src="{{url_for('static', filename='js/views/matrix.js')}}"></script>    
   <script src="{{url_for('static', filename='js/main.js')}}"></script>       
 
 </body>

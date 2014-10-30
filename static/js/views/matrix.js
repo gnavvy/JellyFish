@@ -1,4 +1,4 @@
-app.view.Matrix = React.createClass({
+App.View.Matrix = React.createClass({
   getInitialState: function() {
     return {
       width:   0,
@@ -12,8 +12,8 @@ app.view.Matrix = React.createClass({
     this.updateDimensions();
     this.constructMatrix();
     window.addEventListener("resize", this.updateDimensions);
-    app.socket.emit('matrix:mouted');
-    app.socket.on('matrix:data', this.updateMatrixData);
+    App.socket.emit('matrix:mouted');
+    App.socket.on('matrix:data', this.updateMatrixData);
   },
   componentWillUnmount: function() {
     window.removeEventListener("resize", this.updateDimensions);
@@ -31,11 +31,11 @@ app.view.Matrix = React.createClass({
   },
   getFillColor: function(idx) {
     if (this.state.data === undefined || this.state.data[idx] === 0) {
-      return app.config.COLOR_SCHEME[0]; 
+      return App.Config.COLOR_SCHEME[0];
     } else if (this.state.data[idx] > 0) {
-      return app.config.COLOR_SCHEME[2];
+      return App.Config.COLOR_SCHEME[2];
     } else {
-      return app.config.COLOR_SCHEME[1];
+      return App.Config.COLOR_SCHEME[1];
     }
   },
   getFillOpacity: function(idx) {
@@ -54,7 +54,7 @@ app.view.Matrix = React.createClass({
     var _this = this;
     var elements = _.range(this.state.numRows * this.state.numCols);
     elements = _.map(elements, function(el, idx) {
-      return React.DOM.rect({
+      return React.createElement('rect', {
         className:   "matrix-element",
         width:        elSize * 0.9,
         height:       elSize * 0.9,
@@ -70,9 +70,11 @@ app.view.Matrix = React.createClass({
     return elements;
   },
   render: function() {
-    var matrix = this.constructMatrix();
-    return React.DOM.svg({ width: this.state.width, height: this.state.height },
-      React.DOM.g({ children: matrix })
-    );
+    return React.createElement('svg', { 
+      width: this.state.width, 
+      height: this.state.height 
+    }, React.createElement('g', { 
+      children: this.constructMatrix() 
+    }));
   }
 });

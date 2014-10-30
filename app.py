@@ -4,7 +4,7 @@ from gevent import monkey
 monkey.patch_all()
 
 from flask import Flask, render_template
-from flask.ext.socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -36,7 +36,18 @@ def test_connect():
     emit('handshake', {'data': 'Connected', 'count': 0})
 
 
-@socketio.on('compass:mouted')
+@socketio.on('scatter-plot:mounted')
+def get_scatter_plot_data(req):
+    key = req['id']
+    emit(key+':data', {
+        'x': df[key+'.x'].to_json(orient='values'),
+        'y': df[key+'.y'].to_json(orient='values'),
+        'val': df[key+'.jaccard'].to_json(orient='values'),
+        'cls': df['Class'].to_json(orient='values')
+    })
+
+
+@socketio.on('compass:mounted')
 def get_compass_data():
     numAxes = df.shape[1]
     # uniformly distributed
