@@ -1,0 +1,31 @@
+{
+  "name": "JellyFish",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gnavvy/JellyFish",
+  "authors": [
+    "Yang Wang <gnavvy@gmail.com>"
+  ],
+  "description": "real the fog-of-war",
+  "main": "bower.json",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "jquery-ui": "~1.11.2",
+    "underscore": "~1.7.0",
+    "react": "~0.12.0",
+    "socket.io": "0.9.17",
+    "d3": "~3.4.13",
+    "socket.io-client": "0.9.16"
+  }
+}

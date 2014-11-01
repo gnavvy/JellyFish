@@ -34,7 +34,7 @@
             </section>
           </div>
 
-          <div class="col-sm-3 portlet ui-sortable" style="padding-left: 0">
+          <div class="col-sm-3" id="column-1" style="padding-left: 0">
             <section class="panel panel-info portlet-item">
               <header class="panel-heading">Star Coordinate</header>
               <section class="panel-body">
@@ -51,33 +51,36 @@
             </section>
           </div>
 
-          <div class="col-sm-3 portlet ui-sortable" style="padding-left: 0">
+          <div class="col-sm-3" id="column-2" style="padding-left: 0">
+            <!--<section class="panel panel-info portlet-item">-->
+              <!--<header class="panel-heading">TSNE</header>-->
+              <!--<section class="panel-body">-->
+                <!--<div id="view-3"></div>-->
+              <!--</section>-->
+              <!--<footer class="panel-footer">-->
+                <!--<div id="stats-3"></div>-->
+              <!--</footer>-->
+            <!--</section>-->
             <section class="panel panel-info portlet-item">
-              <header class="panel-heading">-</header>
-              <section class="panel-body">
-                <div id="view-3"></div>
-              </section>
-              <footer class="panel-footer"></footer>
-            </section>
-            <section class="panel panel-info portlet-item">
-              <header class="panel-heading">-</header>
+              <header class="panel-heading">MDS</header>
               <section class="panel-body">
                 <div id="view-4"></div>
               </section>
-              <footer class="panel-footer"></footer>
+              <footer class="panel-footer">
+              </footer>
             </section>
           </div>
 
           <div class="col-sm-3 portlet ui-sortable" style="padding-left: 0">
             <section class="panel panel-info portlet-item">
-              <header class="panel-heading">-</header>
+              <header class="panel-heading">Spectral Embedding</header>
               <section class="panel-body">
                 <div id="view-5"></div>
               </section>
               <footer class="panel-footer"></footer>
             </section>
             <section class="panel panel-info portlet-item">
-              <header class="panel-heading">-</header>
+              <header class="panel-heading">Isomap</header>
               <section class="panel-body">
                 <div id="view-6"></div>
               </section>
@@ -101,13 +104,15 @@
   <!-- Scripts -->
   <script src="{{url_for('static', filename='js/const.js')}}"></script>
   <script src="{{url_for('static', filename='js/util.js')}}"></script>
+  <script src="{{url_for('static', filename='js/views/primitives.js')}}"></script>
   <script src="{{url_for('static', filename='js/views/range-selector.js')}}"></script>
+  <script src="{{url_for('static', filename='js/views/stats-chart.js')}}"></script>
   <script src="{{url_for('static', filename='js/views/control-panel.js')}}"></script>
   <script src="{{url_for('static', filename='js/views/scatter-plot.js')}}"></script>
   <script src="{{url_for('static', filename='js/views/axis.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/primitives.js')}}"></script>
   <script src="{{url_for('static', filename='js/views/compass.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/matrix.js')}}"></script>    
+  <script src="{{url_for('static', filename='js/views/matrix.js')}}"></script>  
+  <script src="{{url_for('static', filename='js/views/widget.js')}}"></script>    
   <script src="{{url_for('static', filename='js/main.js')}}"></script>       
 
 </body>

@@ -16,13 +16,24 @@
     containerId: 'matrix'
   }), document.getElementById('matrix'));
 
-  React.render(App.View.ScatterPlot({
-    method: 'TSNE', containerId: 'view-3'
-  }), document.getElementById('view-3'));
+  App.render(App.View.Widget({
+      componentId: 'tsne-widget',
+      context: { method: 'TSNE' }
+    }),
+    document.getElementById('column-2')
+  );
 
-  React.render(App.View.ScatterPlot({
-    method: 'MDS', containerId: 'view-4'
-  }), document.getElementById('view-4'));
+//  React.render(App.View.ScatterPlot({
+//    method: 'TSNE', containerId: 'view-3'
+//  }), document.getElementById('view-3'));
+//
+//  React.render(App.View.StatsChart({
+//    containerId: 'stats-3'
+//  }), document.getElementById('stats-3'));
+
+//  React.render(App.View.ScatterPlot({
+//    method: 'MDS', containerId: 'view-4'
+//  }), document.getElementById('view-4'));
 
   React.render(App.View.ScatterPlot({
     method: 'Spectral', containerId: 'view-5'

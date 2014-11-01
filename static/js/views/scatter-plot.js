@@ -6,12 +6,13 @@ App.View.ScatterPlot = React.createClass({
   getDefaultProps: function() {
     return {
       containerId: 'default-container',
-      method: 'default-method'
+      data: undefined
+//      method: 'default-method'
     };
   },
   getInitialState: function() {
     return {
-      points: undefined,
+      points: this.props.data,
       width:  0,
       height: 0
     };
@@ -19,20 +20,20 @@ App.View.ScatterPlot = React.createClass({
   componentDidMount: function() {
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions);
-    App.socket.emit('scatter-plot:mounted', { method: this.props.method });
-    App.socket.on(this.props.method+':data', this.updateDataPoints);
+//    App.socket.emit('scatter-plot:mounted', { method: this.props.method });
+//    App.socket.on(this.props.method+':data', this.updateDataPoints);
   },
   componentWillUnmount: function() {
     window.removeEventListener("resize", this.updateDimensions);
   },
   updateDimensions: function() {
-    var size = document.getElementById('view-3').clientWidth;
+    var size = document.getElementById(this.props.containerId).clientWidth;
     this.setState({ width: size, height: size });
   },
-  updateDataPoints: function(res) {
-    var points = _.zip(JSON.parse(res.x), JSON.parse(res.y), JSON.parse(res.val), JSON.parse(res.cls));
-    this.setState({ points: points });
-  },
+//  updateDataPoints: function(res) {
+//    var points = _.zip(JSON.parse(res.x), JSON.parse(res.y), JSON.parse(res.val), JSON.parse(res.cls));
+//    this.setState({ points: points });
+//  },
   plotDataPoints: function(r) {
     return _.map(this.state.points, function(p) {
       return App.create(App.View.Vertex, {
