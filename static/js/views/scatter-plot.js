@@ -7,7 +7,6 @@ App.View.ScatterPlot = React.createClass({
     return {
       containerId: 'default-container',
       data: undefined
-//      method: 'default-method'
     };
   },
   getInitialState: function() {
@@ -20,20 +19,25 @@ App.View.ScatterPlot = React.createClass({
   componentDidMount: function() {
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions);
-//    App.socket.emit('scatter-plot:mounted', { method: this.props.method });
-//    App.socket.on(this.props.method+':data', this.updateDataPoints);
+    document.addEventListener("filter-range-changed", this.updateFilterRange);
   },
   componentWillUnmount: function() {
     window.removeEventListener("resize", this.updateDimensions);
+    document.removeEventListener("filter-range-changed", this.updateFilterRange);
+  },
+  updateFilterRange: function(e) {
+    if (!App.Util.hasSameParentWidget(e.detail.id, this.props.containerId)) {
+      return;
+    }
+    var points = _.filter(this.props.data, function(p) {
+      return p[2] >= e.detail.range[0] && p[2] <= e.detail.range[1];
+    });
+    this.setState({ points: points });
   },
   updateDimensions: function() {
     var size = document.getElementById(this.props.containerId).clientWidth;
     this.setState({ width: size, height: size });
   },
-//  updateDataPoints: function(res) {
-//    var points = _.zip(JSON.parse(res.x), JSON.parse(res.y), JSON.parse(res.val), JSON.parse(res.cls));
-//    this.setState({ points: points });
-//  },
   plotDataPoints: function(r) {
     return _.map(this.state.points, function(p) {
       return App.create(App.View.Vertex, {

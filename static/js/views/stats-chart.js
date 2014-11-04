@@ -20,12 +20,30 @@ App.View.StatsChart = React.createClass({
       isSelecting: false
     };
   },
-  componentDidMount: function(props, state) {
+  componentDidMount: function() {
     this.updateComponentSize();
     window.addEventListener("resize", this.updateComponentSize);
   },
   componentWillUnmount: function() {
     window.removeEventListener("resize", this.updateComponentSize);
+  },
+  shouldComponentUpdate: function(nextProps, nextState) {
+    // re-render if selected bar changed or empty
+    return !_.isEqual(this.state.selectedBars, nextState.selectedBars) ||
+      _.isEmpty(this.state.selectedBars);
+  },
+  componentWillUpdate: function(nextProps, nextState) {
+    if (!this.isMounted() || _.isEmpty(nextState.selectedBars)) {
+      return true;
+    }
+
+    var range = _.map([_.min(nextState.selectedBars), _.max(nextState.selectedBars)],
+      function(idx) { return idx / nextState.numBins; }
+    );
+
+    document.dispatchEvent(new CustomEvent('filter-range-changed', {
+      detail: { id: this.props.containerId, range: range }, bubbles: true
+    }));
   },
   updateComponentSize: function() {
     var width = document.getElementById(this.props.containerId).clientWidth;
@@ -74,6 +92,7 @@ App.View.StatsChart = React.createClass({
           e.preventDefault();
 
           if (!_this.state.isSelecting) return;
+
           var hoveredBar = Math.floor((e.pageX - left) / _this.state.unitWidth);
           var startBar = _this.state.startBar;
           var selected = _.range(Math.min(startBar, hoveredBar), Math.max(startBar, hoveredBar)+1);
@@ -83,8 +102,9 @@ App.View.StatsChart = React.createClass({
 
         function onMouseUp(e) {
           e.preventDefault();
-         _this.setState({ isSelecting: false });
-          document.removeEventListener('mousemove', this.onMouseMove);
+          _this.setState({ isSelecting: false });
+
+          document.removeEventListener('mousemove', onMouseMove);
           document.removeEventListener('mouseup', onMouseUp);
         }
       }
@@ -92,14 +112,8 @@ App.View.StatsChart = React.createClass({
   },
   createBarChart: function() {
     if (!this.isMounted()) return;
-
-    var w = this.state.width,
-        h = this.state.height;
-    var dh = App.Const.STATS_CHART_X_LABEL_HEIGHT;
     return [
       this.createBarSequence(),
-//      App.create('rect', { width: w, height: 1, x: 0, y: h-dh, fill: "#eee" }),
-//      App.create('text', { x: 0, y: h, className: 'stats-chart-text' }, 'quality')
       this.createInteractionLayer()
     ];
   },

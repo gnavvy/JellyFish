@@ -70,10 +70,12 @@ App.View.Widget = React.createClass({
           className: 'panel-heading', id: this.state.headerId
         }
       ) : null,
+
       // body
       App.create('section', { className: 'panel-body' },
         App.create('div', { id: this.state.bodyId })
       ),
+
       // footer
       this.props.options.showFooter ? App.create('footer', { className: 'panel-footer' },
         App.create('div', { id: this.state.footerId })

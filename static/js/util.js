@@ -26,6 +26,12 @@ App.Util.bound = function(val, lowerBound, upperBound) {
   return Math.min(Math.max(val, lowerBound), upperBound);
 };
 
+App.Util.hasSameParentWidget = function(containerId1, containerId2) {
+  var id1 = containerId1.slice(0, _.lastIndexOf(containerId1, '-'));
+  var id2 = containerId2.slice(0, _.lastIndexOf(containerId2, '-'));
+  return _.isEqual(id1, id2);
+};
+
 App.Mixin.SvgCircleMinxin = {
   propTypes: {
     x:           React.PropTypes.number,
@@ -35,7 +41,7 @@ App.Mixin.SvgCircleMinxin = {
     fillOpacity: React.PropTypes.number,
     strokeWidth: React.PropTypes.number
   }
-}
+};
 
 // portlet
 $('.portlet').each(function() {
