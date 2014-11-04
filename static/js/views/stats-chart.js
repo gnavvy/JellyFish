@@ -37,7 +37,7 @@ App.View.StatsChart = React.createClass({
       return true;
     }
 
-    var range = _.map([_.min(nextState.selectedBars), _.max(nextState.selectedBars)],
+    var range = _.map([_.min(nextState.selectedBars), _.max(nextState.selectedBars)+1],
       function(idx) { return idx / nextState.numBins; }
     );
 
@@ -70,6 +70,31 @@ App.View.StatsChart = React.createClass({
         _this.createOneBar(val, idx, selected ? App.Const.COLORS[1] : App.Const.COLORS[0])
       );
     });
+  },
+  createRangeSelector: function() {
+    if (_.isEmpty(this.state.selectedBars)) {
+      return null;
+    }
+
+    var minIdx = _.min(this.state.selectedBars);
+    var maxIdx = _.max(this.state.selectedBars)+1;
+
+    return App.create('g', null,
+      App.create('rect', {
+        width: 0.5,
+        height: this.state.height * App.Const.STATS_CHART_RANGE_SELECTOR_HEIGHT_RATIO,
+        x: this.state.unitWidth * minIdx,
+        y: this.state.height * (1-App.Const.STATS_CHART_RANGE_SELECTOR_HEIGHT_RATIO)/2,
+        fill: App.Const.COLORS[1]
+      }),
+      App.create('rect', {
+        width: 0.5,
+        height: this.state.height * App.Const.STATS_CHART_RANGE_SELECTOR_HEIGHT_RATIO,
+        x: this.state.unitWidth * maxIdx,
+        y: this.state.height * (1-App.Const.STATS_CHART_RANGE_SELECTOR_HEIGHT_RATIO)/2,
+        fill: App.Const.COLORS[1]
+      })
+    );
   },
   createInteractionLayer: function() {
     var left = $('#'+this.props.containerId).offset().left;
@@ -114,6 +139,7 @@ App.View.StatsChart = React.createClass({
     if (!this.isMounted()) return;
     return [
       this.createBarSequence(),
+      this.createRangeSelector(),
       this.createInteractionLayer()
     ];
   },
@@ -121,6 +147,8 @@ App.View.StatsChart = React.createClass({
     if (this.state.width === 0) {
       return null;
     }
+
+    this.createRangeSelector();
 
     return App.create('svg', { width: this.state.width, height: this.state.height },
       App.create('g', { children: this.createBarChart() })
