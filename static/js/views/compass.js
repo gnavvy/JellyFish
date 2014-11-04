@@ -37,7 +37,7 @@ App.View.Compass = React.createClass({
         cx:          cx, 
         cy:          cy, 
         radius:      r, 
-        color:       App.Const.COLOR_SCHEME[axis.c],
+        color:       App.Const.COLORS[axis.c],
         strokeWidth: axis.w,
         data:        axis.data
       });
@@ -49,7 +49,7 @@ App.View.Compass = React.createClass({
         cx:          cx, 
         cy:          cy, 
         radius:      r, 
-        color:       App.Const.COLOR_SCHEME[axis.c],
+        color:       App.Const.COLORS[axis.c],
         strokeWidth: axis.w,
         data:        axis.data
       });

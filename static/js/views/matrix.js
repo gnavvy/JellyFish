@@ -40,11 +40,11 @@ App.View.Matrix = React.createClass({
   },
   getFillColor: function(idx) {
     if (this.state.data === undefined || this.state.data[idx] === 0) {
-      return App.Const.COLOR_SCHEME[0];
+      return App.Const.COLORS[0];
     } else if (this.state.data[idx] > 0) {
-      return App.Const.COLOR_SCHEME[2];
+      return App.Const.COLORS[2];
     } else {
-      return App.Const.COLOR_SCHEME[1];
+      return App.Const.COLORS[1];
     }
   },
   getFillOpacity: function(idx) {

@@ -39,7 +39,7 @@ App.View.ScatterPlot = React.createClass({
       return App.create(App.View.Vertex, {
         x: r + p[0] * r * 4,
         y: r + p[1] * r * 4,
-        color:  App.Const.COLOR_SCHEME[p[3]],
+        color:  App.Const.COLORS[p[3]],
         strokeWidth: 0,
         fillOpacity: 1 - p[2]
       });

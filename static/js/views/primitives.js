@@ -6,8 +6,8 @@ App.View.Vertex = React.createClass({
       cx:          this.props.x || 0,
       cy:          this.props.y || 0,
       r:           this.props.radius || 2,
-      fill:        this.props.color || App.Const.COLOR_SCHEME[1],
-      stroke:      this.props.color || App.Const.COLOR_SCHEME[1],
+      fill:        this.props.color || App.Const.COLORS[1],
+      stroke:      this.props.color || App.Const.COLORS[1],
       fillOpacity: this.props.fillOpacity || 1,
       strokeWidth: this.props.strokeWidth || 1
     });
@@ -35,7 +35,7 @@ App.View.Knob = React.createClass({
         cx:          this.props.x || 0,
         cy:          this.props.y || 0,
         r:           App.Const.RANGE_SELECTOR_KNOB_RADIUS,
-        fill:        App.Const.COLOR_SCHEME[1],
+        fill:        App.Const.COLORS[1],
         onMouseDown: this.props.onMouseDown
       })
     );

@@ -5,7 +5,7 @@ App.create = React.createElement;
 App.render = React.render;
 App.types  = React.PropTypes;
 
-App.Const.COLOR_SCHEME = ["#B1B1B1", "#548BD4", "#FF66CC", "#9DBB61", "#F59D56"];
+App.Const.COLORS = ["#B1B1B1", "#548BD4", "#FF66CC", "#9DBB61", "#F59D56"];
 App.Const.AXIS_KNOB_SIZE = 4;
 App.Const.AXIS_KNOB_STROKE_WIDTH = 2;
 
