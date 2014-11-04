@@ -23,6 +23,13 @@
     document.getElementById('column-2')
   );
 
+  App.render(App.View.Widget({
+      componentId: 'mds-widget',
+      context: { method: 'MDS' }
+    }),
+    document.getElementById('column-3')
+  );
+
 //  React.render(App.View.ScatterPlot({
 //    method: 'TSNE', containerId: 'view-3'
 //  }), document.getElementById('view-3'));
@@ -35,12 +42,12 @@
 //    method: 'MDS', containerId: 'view-4'
 //  }), document.getElementById('view-4'));
 
-  React.render(App.View.ScatterPlot({
-    method: 'Spectral', containerId: 'view-5'
-  }), document.getElementById('view-5'));
-
-  React.render(App.View.ScatterPlot({
-    method: 'Isomap', containerId: 'view-6'
-  }), document.getElementById('view-6'));
+//  React.render(App.View.ScatterPlot({
+//    method: 'Spectral', containerId: 'view-5'
+//  }), document.getElementById('view-5'));
+//
+//  React.render(App.View.ScatterPlot({
+//    method: 'Isomap', containerId: 'view-6'
+//  }), document.getElementById('view-6'));
 
 })();

@@ -1,0 +1,13 @@
+.panel-footer {
+    padding: 4px 4px 0 4px;
+}
+
+.stats-chart-bar {
+    pointer-events: none;
+}
+
+.stats-chart-text {
+    color: #eee;
+    font-size: 9px;
+    dominant-baseline: hanging;
+}
