@@ -44,24 +44,7 @@ App.View.Widget = React.createClass({
       clss = JSON.parse(res.cls);
 
     var points = _.zip(xs, ys, vals, clss);
-
-    var histogram = new Array(App.Const.STATS_CHART_NUM_SEGMENTS);
-    for (var i = 0; i < App.Const.STATS_CHART_NUM_SEGMENTS;) {
-      histogram[i++] = 0;
-    }  // there should be a more concise way of doing this
-
-    _.chain(vals).countBy(function(v) {
-      return Math.floor(v * App.Const.STATS_CHART_NUM_SEGMENTS);
-    }).each(function(count, idx) {
-      histogram[idx] = count;
-    });
-
-    var max = Math.max.apply(Math, histogram);
-    histogram = _.map(histogram, function(bin) {
-      return bin / max;
-    });
-
-    // ----------------------------------------
+    var histogram = App.Util.getHistogram(vals);
 
     // header content
     if (this.props.options.showHeader) {
