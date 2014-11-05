@@ -1,5 +1,7 @@
 #import numpy as np
-from jelly_fish import half_circle as hc
+#from jelly_fish import half_circle as hc
+from jelly_fish import Optimal as op
+#from jelly_fish import orthogonal as ort
 
 
 def read_data(filename):
@@ -48,12 +50,14 @@ def read_data(filename):
 
     # Normalize the data
     #average=map(lambda x: x/len(data),average)
-    print data[0]
-    print data[1]
+    #print data[0]
+    #print data[1]
 
-    results = hc.angle(data, 20)
+    #results = hc.angle(data, 20)
+    results = op.angles(data, 20)
+    print results
 
-    f = open("axes.txt", 'w')
+    f = open("Optimal.txt", 'w')
     print >>f, results
     f.close()
 
