@@ -3,13 +3,13 @@ App.View.Vertex = React.createClass({
   mixins: [App.Mixin.SvgCircleMinxin],
   render: function() {
     return App.create('circle', {
-      cx:          this.props.x || 0,
-      cy:          this.props.y || 0,
-      r:           this.props.radius || 2,
-      fill:        this.props.color || App.Const.COLORS[1],
-      stroke:      this.props.color || App.Const.COLORS[1],
-      fillOpacity: this.props.fillOpacity || 1,
-      strokeWidth: this.props.strokeWidth || 1
+      cx:            this.props.x || 0,
+      cy:            this.props.y || 0,
+      r:             this.props.radius || 2,
+      fill:          this.props.color || App.Const.COLORS[1],
+      stroke:        this.props.color || App.Const.COLORS[0],
+      fillOpacity:   this.props.fillOpacity || 1,
+      strokeOpacity: this.props.strokeOpacity || 1
     });
   }
 });

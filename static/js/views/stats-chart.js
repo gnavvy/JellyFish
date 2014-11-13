@@ -67,7 +67,7 @@ App.View.StatsChart = React.createClass({
       var selected = _.contains(selectedBars, idx);
       return App.create('g', null,
         _this.createOneBar(1.0, idx, selected ? "#D9EDF7" : "#eee"), // background
-        _this.createOneBar(val, idx, selected ? App.Const.COLORS[1] : App.Const.COLORS[0])
+        _this.createOneBar(val, idx, selected ? App.Const.COLORS[6] : App.Const.COLORS[2])
       );
     });
   },
@@ -85,14 +85,14 @@ App.View.StatsChart = React.createClass({
         height: this.state.height * App.Const.STATS_CHART_RANGE_SELECTOR_HEIGHT_RATIO,
         x: this.state.unitWidth * minIdx,
         y: this.state.height * (1-App.Const.STATS_CHART_RANGE_SELECTOR_HEIGHT_RATIO)/2,
-        fill: App.Const.COLORS[1]
+        fill: App.Const.COLORS[6]
       }),
       App.create('rect', {
         width: 0.5,
         height: this.state.height * App.Const.STATS_CHART_RANGE_SELECTOR_HEIGHT_RATIO,
         x: this.state.unitWidth * maxIdx,
         y: this.state.height * (1-App.Const.STATS_CHART_RANGE_SELECTOR_HEIGHT_RATIO)/2,
-        fill: App.Const.COLORS[1]
+        fill: App.Const.COLORS[6]
       })
     );
   },

@@ -11,7 +11,7 @@ App.View.ScatterPlot = React.createClass({
   },
   getInitialState: function() {
     return {
-      points: this.props.data,
+      points: _.map(this.props.data, function(p) { return { 'x': p[0], 'y': p[1], 'val': p[2], 'cls': p[3] }; }),
       width:  0,
       height: 0
     };
@@ -29,9 +29,17 @@ App.View.ScatterPlot = React.createClass({
     if (!App.Util.hasSameParentWidget(e.detail.id, this.props.containerId)) {
       return;
     }
-    var points = _.filter(this.props.data, function(p) {
-      return p[2] >= e.detail.range[0] && p[2] <= e.detail.range[1];
+    var points = _.map(this.props.data, function(p) {
+      var point = { 'x': p[0], 'y': p[1], 'val': p[2], 'cls': p[3] };
+      if (point.val >= e.detail.range[0] && point.val <= e.detail.range[1]) {
+//      if (point.val < e.detail.range[0] && point.val > e.detail.range[1]) {
+        point.val = 0.95;
+      } else {
+        point.cls = 0;
+      }
+      return point;
     });
+
     this.setState({ points: points });
   },
   updateDimensions: function() {
@@ -39,13 +47,16 @@ App.View.ScatterPlot = React.createClass({
     this.setState({ width: size, height: size });
   },
   plotDataPoints: function(r) {
+
     return _.map(this.state.points, function(p) {
       return App.create(App.View.Vertex, {
-        x: r + p[0] * r * 4,
-        y: r + p[1] * r * 4,
-        color:  App.Const.COLORS[p[3]],
-        strokeWidth: 0,
-        fillOpacity: 1 - p[2]
+        x: p.x * r * 0.9 + r,
+        y: p.y * r * 0.9 + r,
+        color:  App.Const.COLORS[p.cls],
+        radius: 2,
+//        strokeWidth: 0,
+        strokeOpacity: 0.1,
+        fillOpacity: p.val
       });
     });
   },

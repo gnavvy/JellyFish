@@ -9,10 +9,10 @@
     console.log('handshake: ', msg.data);
   });
 
-  React.render(App.View.ControlPanel(), document.getElementById('control-panel'));
-  React.render(App.View.Compass(), document.getElementById('compass'));
+  App.render(App.View.ControlPanel(), document.getElementById('control-panel'));
+  App.render(App.View.Compass(), document.getElementById('compass'));
 
-  React.render(App.View.Matrix({
+  App.render(App.View.Matrix({
     containerId: 'matrix'
   }), document.getElementById('matrix'));
 
@@ -20,34 +20,27 @@
       componentId: 'tsne-widget',
       context: { method: 'TSNE' }
     }),
-    document.getElementById('column-2')
+    document.getElementById('widget-3')
   );
 
   App.render(App.View.Widget({
       componentId: 'mds-widget',
       context: { method: 'MDS' }
     }),
-    document.getElementById('column-3')
+    document.getElementById('widget-4')
   );
 
-//  React.render(App.View.ScatterPlot({
-//    method: 'TSNE', containerId: 'view-3'
-//  }), document.getElementById('view-3'));
-//
-//  React.render(App.View.StatsChart({
-//    containerId: 'stats-3'
-//  }), document.getElementById('stats-3'));
+  App.render(App.View.Widget({
+      componentId: 'spectral-widget',
+      context: { method: 'Spectral' }
+    }),
+    document.getElementById('widget-5')
+  );
 
-//  React.render(App.View.ScatterPlot({
-//    method: 'MDS', containerId: 'view-4'
-//  }), document.getElementById('view-4'));
-
-//  React.render(App.View.ScatterPlot({
-//    method: 'Spectral', containerId: 'view-5'
-//  }), document.getElementById('view-5'));
-//
-//  React.render(App.View.ScatterPlot({
-//    method: 'Isomap', containerId: 'view-6'
-//  }), document.getElementById('view-6'));
-
+  App.render(App.View.Widget({
+      componentId: 'isomap-widget',
+      context: { method: 'Isomap' }
+    }),
+    document.getElementById('widget-6')
+  );
 })();

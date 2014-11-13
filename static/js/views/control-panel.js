@@ -61,13 +61,6 @@ App.View.ControlPanel = React.createClass({
             )
           )
         )
-      ),
-      App.create('div', { className: "line line-dashed b-b line-lg pull-in" }),
-      App.create('div', { className: "form-group m-b-xs" },
-        App.create('label', { className: "padder clear" }, "Range Selector"),
-        App.create('div', { className: "m-md", id: 'range-selector' },
-          App.create(App.View.RangeSelector, { containerId: 'range-selector' })
-        )
       )
     );
   }
