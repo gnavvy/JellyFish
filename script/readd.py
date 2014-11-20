@@ -50,14 +50,14 @@ def read_data(filename):
 
     # Normalize the data
     #average=map(lambda x: x/len(data),average)
-    #print data[0]
-    #print data[1]
+    # print data[0]
+    # print data[1]
 
     #results = hc.angle(data, 20)
     results = op.angles(data, 20)
     print results
 
-    f = open("Optimal.txt", 'w')
+    f = open("Optimal_rotate.txt", 'w')
     print >>f, results
     f.close()
 
