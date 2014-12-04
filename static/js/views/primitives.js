@@ -21,7 +21,7 @@ App.View.Knob = React.createClass({
     return {
       componentId:'default-knob',
       onMouseDown: function() {}
-    }
+    };
   },
   render: function() {
     return App.create('g', null,

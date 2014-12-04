@@ -53,14 +53,14 @@ App.View.Widget = React.createClass({
 
     // body content
     App.render(App.View.ScatterPlot({
-        containerId: this.state.bodyId, data: points
+      containerId: this.state.bodyId, data: points
     }), document.getElementById(this.state.bodyId));
 
     // footer content
     if (this.props.options.showFooter) {
       App.render(App.View.StatsChart({
-          containerId: this.state.footerId, data: histogram
-      }), document.getElementById(this.state.footerId))
+        containerId: this.state.footerId, data: histogram
+      }), document.getElementById(this.state.footerId));
     }
   },
   render: function() {
