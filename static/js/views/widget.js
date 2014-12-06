@@ -16,7 +16,7 @@ App.View.Widget = React.createClass({
         method: 'default-method'
       },
       options: {
-        showHeader: true,
+        showHeader: false,
         showFooter: true,
         isPortlet:  false,
         isLeftmost: false
@@ -41,9 +41,10 @@ App.View.Widget = React.createClass({
     var xs = JSON.parse(res.x),
         ys = JSON.parse(res.y),
       vals = JSON.parse(res.val),
-      clss = JSON.parse(res.cls);
+      clss = JSON.parse(res.cls),
+      knns = JSON.parse(res.knn);
 
-    var points = _.zip(xs, ys, vals, clss);
+    var points = _.zip(xs, ys, vals, clss, knns.data);
     var histogram = App.Util.getHistogram(vals);
 
     // header content
@@ -64,7 +65,7 @@ App.View.Widget = React.createClass({
     }
   },
   render: function() {
-    return App.create('section', { className: 'panel panel-info' },
+    return App.create('section', { className: 'panel panel-default' },
       // header
       this.props.options.showHeader ? App.create('header', {
           className: 'panel-heading', id: this.state.headerId

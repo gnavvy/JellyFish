@@ -1,90 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
   <title>JellyFish</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{url_for('static', filename='css/app.css')}}"/>
   <link rel="stylesheet" href="{{url_for('static', filename='css/extra.css')}}"/>
 </head>
 
 <body>
-  <section class="vbox">
-    <header class="bg-white header header-md navbar navbar-fixed-top-xs">
-      <a href="#" class="navbar-brand navbar-left">
-        <span class="font-bold">Jellyfish</span>
-      </a>
-      <a href="#" class="navbar-brand navbar-right">
-        <span class="font-bold">Visualization & Interface Design Innovation</span>
-      </a>
-    </header>
+<section class="vbox">
+  <header class="bg-dark header header-md navbar navbar-fixed-top-xs b-b">
+    <a href="#" class="navbar-brand navbar-left">
+      <span class="font-bold">Jellyfish</span>
+    </a>
+    <a href="#" class="navbar-brand navbar-right">
+      <span class="font-bold">Visualization & Interface Design Innovation</span>
+    </a>
+  </header>
 
-    <section id="content" class="hbox stretch">
-      <section class="vbox scrollable wrapper">
-        <div class="row m-b-n">
+  <section id="content" class="hbox stretch">
 
-          <div class="col-sm-3">
-            <section class="panel panel-default">
-              <header class="panel-heading">Control Panel</header>
-              <section class="panel-body">
-                <div id="control-panel"></div>
-              </section>
-            </section>
-          </div>
-
-          <div class="col-sm-3" id="column-1" style="padding-left: 0">
-            <section class="panel panel-info portlet-item">
-              <header class="panel-heading">Star Coordinate</header>
-              <section class="panel-body">
-                <div id="compass"></div>
-              </section>
-            </section>
-            <section class="panel panel-info portlet-item">
-              <header class="panel-heading">Correlation Matrix</header>
-              <section class="panel-body">
-                <div id="matrix"></div>
-              </section>
-            </section>
-          </div>
-
-          <div class="col-sm-3" style="padding-left: 0">
-            <div id="widget-3"></div>
-            <div id="widget-4"></div>
-          </div>
-
-          <div class="col-sm-3" style="padding-left: 0">
-            <div id="widget-5"></div>
-            <div id="widget-6"></div>
-          </div>
-
-        </div>
+    <aside class="aside-lg">
+      <section class="vbox scrollable wrapper-xs">
+        <section class="panel-body">
+          <div id="control-panel"></div>
+        </section>
       </section>
+
+      <section class="panel-body">
+        <div id="gl-widget"></div>
+      </section>
+    </aside>
+
+    <section class="vbox scrollable wrapper">
+      <div class="row m-b-n">
+        <div class="col-sm-12">
+          <div id="tsne"></div>
+          <!-- <div id="mds"></div> -->
+        </div>
+<!--         <div class="col-sm-6">
+          <div id="spectral"></div>
+          <div id="isomap"></div>
+        </div> -->
+      </div>
     </section>
+
+    <aside class="aside-xl">
+      <section class="vbox scrollable wrapper-xs">
+        <section class="panel-body">
+          <div id="compass"></div>
+        </section>
+        <section class="panel-body">
+          <div id="matrix"></div>
+        </section>
+      </section>
+    </aside>
+
   </section>
+</section>
 
-  <!-- Libraries -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>      
+<!-- Libraries -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/react/0.12.0/react.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
 
-  <!-- Scripts -->
-  <script src="{{url_for('static', filename='js/const.js')}}"></script>
-  <script src="{{url_for('static', filename='js/util.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/primitives.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/range-selector.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/stats-chart.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/control-panel.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/scatter-plot.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/axis.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/compass.js')}}"></script>
-  <script src="{{url_for('static', filename='js/views/matrix.js')}}"></script>  
-  <script src="{{url_for('static', filename='js/views/widget.js')}}"></script>    
-  <script src="{{url_for('static', filename='js/main.js')}}"></script>       
+<!-- Scripts -->
+<script src="{{url_for('static', filename='js/const.js')}}"></script>
+<script src="{{url_for('static', filename='js/util.js')}}"></script>
+<script src="{{url_for('static', filename='js/views/primitives.js')}}"></script>
+<script src="{{url_for('static', filename='js/views/stats-chart.js')}}"></script>
+<script src="{{url_for('static', filename='js/views/control-panel.js')}}"></script>
+<script src="{{url_for('static', filename='js/views/scatter-plot.js')}}"></script>
+<script src="{{url_for('static', filename='js/views/axis.js')}}"></script>
+<script src="{{url_for('static', filename='js/views/compass.js')}}"></script>
+<script src="{{url_for('static', filename='js/views/matrix.js')}}"></script>
+<script src="{{url_for('static', filename='js/views/widget.js')}}"></script>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
 
 </body>
 </html>

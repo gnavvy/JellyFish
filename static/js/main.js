@@ -10,37 +10,26 @@
   });
 
   App.render(App.View.ControlPanel(), document.getElementById('control-panel'));
-  App.render(App.View.Compass(), document.getElementById('compass'));
 
-  App.render(App.View.Matrix({
-    containerId: 'matrix'
-  }), document.getElementById('matrix'));
+  // App.render(App.View.Compass(), document.getElementById('compass'));
+  // App.render(App.View.Matrix({ containerId: 'matrix' }), 
+  //   document.getElementById('matrix')
+  // );
 
-  App.render(App.View.Widget({
-      componentId: 'tsne-widget',
-      context: { method: 'TSNE' }
-    }),
-    document.getElementById('widget-3')
+  App.render(App.View.Widget({ componentId: 'tsne-widget', context: { method: 'TSNE' } }),
+    document.getElementById('tsne')
   );
 
-  App.render(App.View.Widget({
-      componentId: 'mds-widget',
-      context: { method: 'MDS' }
-    }),
-    document.getElementById('widget-4')
-  );
+  // App.render(App.View.Widget({ componentId: 'mds-widget', context: { method: 'MDS' } }),
+  //   document.getElementById('mds')
+  // );
 
-  App.render(App.View.Widget({
-      componentId: 'spectral-widget',
-      context: { method: 'Spectral' }
-    }),
-    document.getElementById('widget-5')
-  );
+  // App.render(App.View.Widget({ componentId: 'spectral-widget', context: { method: 'Spectral' } }),
+  //   document.getElementById('spectral')
+  // );
 
-  App.render(App.View.Widget({
-      componentId: 'isomap-widget',
-      context: { method: 'Isomap' }
-    }),
-    document.getElementById('widget-6')
-  );
+  // App.render(App.View.Widget({ componentId: 'isomap-widget', context: { method: 'Isomap' } }),
+  //   document.getElementById('isomap')
+  // );
+
 })();
