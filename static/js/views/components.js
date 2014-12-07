@@ -41,3 +41,33 @@ App.View.Knob = React.createClass({
     );
   }
 });
+
+App.View.Slider = React.createClass({
+  displayName: 'Slider',
+  getDefaultProps: function() {
+    return {
+      componentId: 'default-component',
+      attributeId: 'default-attribute',
+      minValue:     0.0,
+      maxValue:     1.0,
+      value:        0.5
+    };
+  },
+  render: function() {
+    return App.create('svg', { width: 200, height: 96 });
+//      App.create('circle', {  // shadow
+//        cx:          this.props.x + 1 || 1,
+//        cy:          this.props.y + 1 || 1,
+//        r:           App.Const.RANGE_SELECTOR_KNOB_RADIUS,
+//        fill:       '#ddd'
+//      }),
+//      App.create('circle', {
+//        cx:          this.props.x || 0,
+//        cy:          this.props.y || 0,
+//        r:           App.Const.RANGE_SELECTOR_KNOB_RADIUS,
+//        fill:        App.Const.COLORS[1],
+//        onMouseDown: this.props.onMouseDown
+//      })
+//    );
+  }
+});
