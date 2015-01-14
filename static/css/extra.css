@@ -11,3 +11,14 @@
     font-size: 9px;
     dominant-baseline: hanging;
 }
+
+.slider-text {
+    /*fill: #eee;*/
+    /*font-size: 9px;*/
+    /*dominant-baseline: hanging;*/
+    alignment-baseline: central;
+}
+
+.click-through {
+    pointer-events: none;
+}

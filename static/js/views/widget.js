@@ -16,7 +16,7 @@ App.View.Widget = React.createClass({
         method: 'default-method'
       },
       options: {
-        showHeader: false,
+        showHeader: true,
         showFooter: true,
         isPortlet:  false,
         isLeftmost: false
@@ -53,6 +53,7 @@ App.View.Widget = React.createClass({
     }
 
     // body content
+    // App.render(App.View.ScatterPlotSvg({
     App.render(App.View.ScatterPlot({
       containerId: this.state.bodyId, data: points
     }), document.getElementById(this.state.bodyId));

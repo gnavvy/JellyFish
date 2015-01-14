@@ -33,11 +33,11 @@ App.View.Axis = React.createClass({
     var radius = this.props.radius;
     var data = this.props.data;
     var points = _.map(_.sortBy(_.keys(data)), function(key) {
-      var rad = Math.PI * data[key];
+      var rad = Math.PI * data[key] * 2;
       var mag = radius * key;
       return { 
-        'x': cx + mag * Math.cos(rad), 
-        'y': cy - mag * Math.sin(rad) 
+        'x': cx + mag * Math.cos(rad),
+        'y': cy - mag * Math.sin(rad)
       };
     });
     this.setState({ points: points });

@@ -22,7 +22,7 @@ App.View.ControlPanel = React.createClass({
         )
       ),
 
-      App.create('div', { className: "line line-dashed b-b line-lg pull-in" }),
+      App.create('div', { className: "line line-dashed b-b b-light line-lg pull-in" }),
 
       App.create('div', { className: "form-group m-b-xs" },
         App.create('label', { className: "padder clear" }, "Star Coordinate Layout"),
@@ -64,7 +64,7 @@ App.View.ControlPanel = React.createClass({
         )
       ),
 
-      App.create('div', { className: "line line-dashed b-b line-lg pull-in" }),
+      App.create('div', { className: "line line-dashed b-b b-light line-lg pull-in" }),
 
       App.create('div', { className: "form-group" },
         App.create('label', { className: "control-label col-sm-3" }, "Projector: "),
@@ -76,22 +76,14 @@ App.View.ControlPanel = React.createClass({
             App.create('option', { value: 'Isomap' }, "Isomap")
           )
         )
-      )
+      ),
 
+      App.create('div', { className: "line line-dashed b-b b-light line-lg pull-in" }),
 
-//      App.create("div", {className: "slider slider-horizontal", style: "width: 210px;"},
-//        App.create("div", {className: "slider-track"},
-//        App.create("div", {className: "slider-selection", style: "left: 0%; width: 33.3333333333333%;"}),
-//        App.create("div", {className: "slider-handle round", style: "left: 33.3333333333333%;"}),
-//        App.create("div", {className: "slider-handle round hide", style: "left: 0%;"})
-//      ),
-//      App.create("div", {className: "tooltip top", style: "top: -30px; left: 56px;"},
-//        App.create("div", {className: "tooltip-arrow"}),
-//        App.create("div", {className: "tooltip-inner"}, "10")
-//      ),
-//      App.create("input", {className: "slider slider-horizontal form-control", type: "text", value: "", 'data-slider-min': "5", 'data-slider-max': "20",
-//         'data-slider-step': "1", 'data-slider-value': "10", 'data-slider-orientation': "horizontal"})
-//      )
+      App.create('div', { id: 'slider1' }, App.View.Slider({ containerId: 'slider1', attributeId: 'Opacity' })),
+      App.create('div', { id: 'slider2' }, App.View.Slider({ containerId: 'slider2', attributeId: 'K', maxValue: 100 })),
+
+      App.create('div', { className: "line line-dashed b-b b-light line-lg pull-in" })
 
     );
   }

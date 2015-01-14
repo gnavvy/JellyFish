@@ -11,25 +11,25 @@
 
   App.render(App.View.ControlPanel(), document.getElementById('control-panel'));
 
-  // App.render(App.View.Compass(), document.getElementById('compass'));
-  // App.render(App.View.Matrix({ containerId: 'matrix' }), 
-  //   document.getElementById('matrix')
-  // );
+  App.render(App.View.Compass(), document.getElementById('compass'));
+//  App.render(App.View.Matrix({ containerId: 'matrix' }),
+//     document.getElementById('matrix')
+//  );
 
   App.render(App.View.Widget({ componentId: 'tsne-widget', context: { method: 'TSNE' } }),
     document.getElementById('tsne')
   );
 
   // App.render(App.View.Widget({ componentId: 'mds-widget', context: { method: 'MDS' } }),
-  //   document.getElementById('mds')
+  //    document.getElementById('mds')
   // );
 
   // App.render(App.View.Widget({ componentId: 'spectral-widget', context: { method: 'Spectral' } }),
-  //   document.getElementById('spectral')
+  //    document.getElementById('spectral')
   // );
 
   // App.render(App.View.Widget({ componentId: 'isomap-widget', context: { method: 'Isomap' } }),
-  //   document.getElementById('isomap')
+  //    document.getElementById('isomap')
   // );
 
 })();
